@@ -1,0 +1,47 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/10 14:55:04 by psalame           #+#    #+#             */
+/*   Updated: 2023/11/10 15:23:07 by psalame          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void	rotate_pile(pile_t *pile)
+{
+	int		tmp;
+	size_t	i;
+
+	if (!pile || pile->size <= 1)
+		return ;
+	tmp = pile->data[pile->size - 1];
+	i = pile->size - 1;
+	while (i > 0)
+	{
+		pile->data[i] = pile->data[i - 1];
+		i--;
+	}
+	pile->data[0] = tmp;
+}
+
+void	rotate_pile_revert(pile_t *pile)
+{
+	int		tmp;
+	size_t	i;
+
+	if (!pile || pile->size <= 1)
+		return ;
+	tmp = pile->data[0];
+	i = 0;
+	while (i < pile->size - 1)
+	{
+		pile->data[i] = pile->data[i + 1];
+		i++;
+	}
+	pile->data[i] = tmp;
+}
