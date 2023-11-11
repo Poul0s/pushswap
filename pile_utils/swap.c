@@ -6,13 +6,13 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:57:28 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/10 15:22:32 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/11 11:34:25 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(pile_t *pile)
+void	swap(t_pile *pile)
 {
 	int	tmp;
 

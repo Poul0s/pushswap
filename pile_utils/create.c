@@ -6,13 +6,13 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:17:04 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/10 18:18:04 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/11 11:34:14 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-pile_t	*create_pile(void)
+t_pile	*create_pile(void)
 {
-	pile_t	pile;
+	t_pile	pile;
 
 	pile = malloc(sizeof(pile));
 	if (pile == NULL)
