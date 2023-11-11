@@ -6,19 +6,19 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:09:25 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/11 11:56:03 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/12 00:16:08 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-e_bool	add_pile_ele(t_pile *pile, int ele)
+t_bool	add_pile_ele(t_pile *pile, int ele)
 {
 	int		*newtab;
 	size_t	i;
 
 	if (pile == NULL)
-		return ;
+		return (FALSE);
 	newtab = malloc((pile->size + 1) * sizeof(int));
 	if (newtab == NULL)
 		return (FALSE);
@@ -35,7 +35,7 @@ e_bool	add_pile_ele(t_pile *pile, int ele)
 	return (TRUE);
 }
 
-e_bool	remove_pile_ele(t_pile *pile)
+t_bool	remove_pile_ele(t_pile *pile)
 {
 	int		*newtab;
 	size_t	i;
