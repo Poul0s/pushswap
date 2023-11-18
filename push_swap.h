@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:52:26 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/12 00:17:26 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/18 02:38:18 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef enum e_action
 typedef struct s_pile
 {
 	int		*data;
+	size_t	*rank;
 	size_t	size;
 }			t_pile;
 
@@ -50,5 +51,9 @@ t_bool	push(t_pile *pile_from, t_pile *pile_to);
 void	swap(t_pile *pile);
 t_pile	*create_pile(void);
 size_t	get_largest_number_pos(t_pile *pile);
+void	free_pile(t_pile *pile);
+t_pile	*initialise_pile(char **values, size_t size, size_t maxsize);
+t_bool	ft_isnumber(const char *str);
+t_list	*sort_pile(t_pile *pile_a, t_pile *pile_b);
 
 #endif

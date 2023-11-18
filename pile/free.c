@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_largest_number_pos.c                           :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 11:42:43 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/12 00:17:29 by psalame          ###   ########.fr       */
+/*   Created: 2023/11/18 01:44:04 by psalame           #+#    #+#             */
+/*   Updated: 2023/11/18 01:45:31 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	get_largest_number_pos(t_pile *pile)
+void	free_pile(t_pile *pile)
 {
-	size_t	i;
-	size_t	pos;
-
-	i = 1;
-	pos = 0;
-	while (i < pile->size)
+	if (pile)
 	{
-		if (pile->data[i] > pile->data[pos])
-			pos = i;
-		i++;
+		free(pile->data);
+		free(pile->rank);
+		free(pile);
 	}
-	return (pos);
 }
