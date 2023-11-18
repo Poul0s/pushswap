@@ -6,7 +6,7 @@
 #    By: psalame <psalame@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/31 11:02:12 by psalame           #+#    #+#              #
-#    Updated: 2023/11/17 02:42:22 by psalame          ###   ########.fr        #
+#    Updated: 2023/11/18 21:14:35 by psalame          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,18 @@ CFLAGS	=	-Wall -Wextra -Werror -g
 
 NAME	=	push_swap
 
-SRCS	=	pile_utils/create.c \
-			pile_utils/add_remove.c \
-			pile_utils/get_largest_number_pos.c \
-			pile_utils/push.c \
-			pile_utils/rotate.c \
-			pile_utils/swap.c \
-			push_swap.c 
+SRCS	=	pile/create.c \
+			pile/add_remove.c \
+			pile/free.c \
+			pile/initialise.c \
+			pile/push.c \
+			pile/rotate.c \
+			pile/swap.c \
+			sort/do_action.c \
+			sort/is_sort.c \
+			sort/sort.c \
+			ft_isnumber.c \
+			push_swap.c
 
 OBJS	=	$(SRCS:.c=.o)
 

@@ -6,9 +6,11 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 02:17:41 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/18 02:22:08 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/18 20:16:33 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 t_bool	ft_isnumber(const char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:52:26 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/18 02:38:18 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/18 21:42:58 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,19 @@ typedef struct s_pile
 	size_t	size;
 }			t_pile;
 
-t_bool	add_pile_ele(t_pile *pile, int ele);
+t_bool	add_pile_ele(t_pile *pile, int ele, size_t rank);
 t_bool	remove_pile_ele(t_pile *pile);
 void	rotate_pile(t_pile *pile);
 void	rotate_pile_revert(t_pile *pile);
 t_bool	push(t_pile *pile_from, t_pile *pile_to);
 void	swap(t_pile *pile);
 t_pile	*create_pile(void);
-size_t	get_largest_number_pos(t_pile *pile);
 void	free_pile(t_pile *pile);
+void	set_pile_rank(t_pile *pile);
 t_pile	*initialise_pile(char **values, size_t size, size_t maxsize);
 t_bool	ft_isnumber(const char *str);
-t_list	*sort_pile(t_pile *pile_a, t_pile *pile_b);
+t_bool	sort_pile(t_pile *pile_a, t_pile *pile_b);
+t_bool	is_sort(t_pile *pile_a, t_pile *pile_b);
+t_bool	add_action(char *action, t_list **actions);
 
 #endif

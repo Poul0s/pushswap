@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 02:24:23 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/18 03:41:35 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/18 23:06:27 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static size_t	nb_to_separate(t_pile *pile)
 	res = 0;
 	while (i < pile->size)
 	{
-		if (pile->rank[i] & 1 == 0)
+		if ((pile->rank[i] & 1) == 0)
 			res++;
 		i++;
 	}
@@ -32,40 +32,64 @@ static t_bool	separate(t_pile *pile_a, t_pile *pile_b, t_list **actions)
 {
 	size_t	to_separate;
 	size_t	separated;
-	size_t	action;
 
 	to_separate = nb_to_separate(pile_a);
 	separated = 0;
 	while (separated < to_separate)
 	{
-		if (pile_a->data[pile_a->size - 1] & 1 == 0)
+		if ((pile_a->rank[pile_a->size - 1] & 1) == 0)
 		{
 			push(pile_a, pile_b);
 			separated++;
-			if (!add_action("pb"))
+			if (!add_action("pb", actions))
 				return (FALSE);
 		}
 		else
 		{
 			rotate_pile(pile_a);
-			if (!add_action("ra"))
+			if (!add_action("ra", actions))
 				return (FALSE);
 		}
 	}
 	return (TRUE);
 }
 
-// https://medium.com/nerd-for-tech/push-swap-tutorial-fa746e6aba1e
+static t_bool	join(t_pile *pile_a, t_pile *pile_b, t_list **actions)
+{
+	while (pile_b->size != 0)
+	{
+		push(pile_b, pile_a);
+		if (!add_action("pa", actions))
+			return (FALSE);
+	}
+	return (TRUE);
+}
 
-t_list	*sort_pile(t_pile *pile_a, t_pile *pile_b)
+static void	ft_putendl(void *str)
+{
+	ft_putendl_fd(str, 1);
+}
+
+t_bool	sort_pile(t_pile *pile_a, t_pile *pile_b)
 {
 	t_list	*actions;
+	size_t	i;
 
 	actions = NULL;
 	while (!is_sort(pile_a, pile_b))
 	{
-		separate(pile_a, pile_b, &actions);
-		// todo join
+		if (!separate(pile_a, pile_b, &actions))
+			return (FALSE);
+		if (!join(pile_a, pile_b, &actions))
+			return (FALSE);
+		i = 0;
+		while (i < pile_a->size)
+		{
+			pile_a->rank[i] = pile_a->rank[i] >> 1;
+			i++;
+		}
 	}
-	return (actions);
+	ft_lstiter(actions, &ft_putendl);
+	ft_lstclear(&actions, &free);
+	return (TRUE);
 }

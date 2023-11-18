@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 23:10:30 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/18 02:10:49 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/18 21:13:45 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	set_pile_rank(t_pile *pile)
 	{
 		rank = 0;
 		j = 0;
-		while (j < size)
+		while (j < pile->size)
 			if (pile->data[j++] < pile->data[i])
 				rank++;
 		pile->rank[i] = rank;
@@ -44,11 +44,11 @@ t_pile	*initialise_pile(char **values, size_t size, size_t maxsize)
 	pile->rank = malloc(maxsize * sizeof(size_t));
 	if (pile->data == NULL || pile->rank == NULL)
 	{
-		free_pile(pile)
+		free_pile(pile);
 		return (NULL);
 	}
 	i = size;
-	while (size > 0)
+	while (i > 0)
 	{
 		pile->data[i - 1] = ft_atoi(values[i - 1]);
 		i--;
