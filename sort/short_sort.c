@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   short_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 02:24:23 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/19 14:47:08 by psalame          ###   ########.fr       */
+/*   Created: 2023/11/19 14:43:47 by psalame           #+#    #+#             */
+/*   Updated: 2023/11/19 14:59:38 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_putendl(void *str)
+static t_bool	sort_tree(t_pile *a, t_pile *b, t_list **actions)
 {
-	ft_putendl_fd(str, 1);
+	if (a->size == 2 && a->data[1] > a->data[0])
+	{
+		swap(a);
+		return (add_action("sa", actions, a, b));
+	}
+	else if (a->size == 3)
+	{
+		if (a->data[2] > a->data[1] && a->data[0] > a->data[2])
+		{
+			swap(a);
+			return (add_action("sa", actions, a, b));
+		}
+	}
+	return (TRUE);
 }
 
-t_bool	sort_pile(t_pile *pile_a, t_pile *pile_b)
+t_bool	short_sort(t_pile *pile_a, t_pile *pile_b, t_list **actions)
 {
-	t_list	*actions;
-	size_t	bit_i;
-
-	actions = NULL;
-	if (!is_sort(pile_a, pile_b))
-	{
-		if (pile_a->size <= 5)
-			short_sort(pile_a, pile_b, &actions);
-	}
-	ft_lstiter(actions, &ft_putendl);
-	ft_lstclear(&actions, &free);
-	return (TRUE);
+	
 }
