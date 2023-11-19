@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:52:10 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/18 20:15:03 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/19 12:18:17 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	main(int ac, char **av)
 		ft_putendl_fd("Error", STDERR_FILENO);
 		return (0);
 	}
+	if (SHOW_DETAIL)
+		print_state(NULL, pile_a, pile_b);
 	if (!is_sort(pile_a, pile_b))
 		if (!sort_pile(pile_a, pile_b))
 			ft_putendl_fd("Error", STDERR_FILENO);

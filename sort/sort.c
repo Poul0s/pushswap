@@ -6,13 +6,13 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 02:24:23 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/18 23:06:27 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/19 12:44:21 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static size_t	nb_to_separate(t_pile *pile)
+static size_t	nb_to_separate(t_pile *pile, size_t bit_i)
 {
 	size_t	i;
 	size_t	res;
@@ -21,45 +21,46 @@ static size_t	nb_to_separate(t_pile *pile)
 	res = 0;
 	while (i < pile->size)
 	{
-		if ((pile->rank[i] & 1) == 0)
+		if (((pile->rank[i] >> bit_i) & 1) == 0)
 			res++;
 		i++;
 	}
 	return (res);
 }
 
-static t_bool	separate(t_pile *pile_a, t_pile *pile_b, t_list **actions)
+static t_bool	separate(t_pile *a, t_pile *b, t_list **actions, size_t i)
 {
 	size_t	to_separate;
 	size_t	separated;
 
-	to_separate = nb_to_separate(pile_a);
+	to_separate = nb_to_separate(a, i);
 	separated = 0;
 	while (separated < to_separate)
 	{
-		if ((pile_a->rank[pile_a->size - 1] & 1) == 0)
+		if (((a->rank[a->size - 1] >> i) & 1) == 0)
 		{
-			push(pile_a, pile_b);
+			push(a, b);
 			separated++;
-			if (!add_action("pb", actions))
+			if (!add_action("pb", actions, a, b))
 				return (FALSE);
 		}
 		else
 		{
-			rotate_pile(pile_a);
-			if (!add_action("ra", actions))
+			rotate_pile(a);
+			if (!add_action("ra", actions, a, b))
 				return (FALSE);
 		}
 	}
 	return (TRUE);
 }
 
+// todo check if no need to push a
 static t_bool	join(t_pile *pile_a, t_pile *pile_b, t_list **actions)
 {
 	while (pile_b->size != 0)
 	{
 		push(pile_b, pile_a);
-		if (!add_action("pa", actions))
+		if (!add_action("pa", actions, pile_a, pile_b))
 			return (FALSE);
 	}
 	return (TRUE);
@@ -73,21 +74,17 @@ static void	ft_putendl(void *str)
 t_bool	sort_pile(t_pile *pile_a, t_pile *pile_b)
 {
 	t_list	*actions;
-	size_t	i;
+	size_t	bit_i;
 
 	actions = NULL;
+	bit_i = 0;
 	while (!is_sort(pile_a, pile_b))
 	{
-		if (!separate(pile_a, pile_b, &actions))
+		if (!separate(pile_a, pile_b, &actions, bit_i))
 			return (FALSE);
 		if (!join(pile_a, pile_b, &actions))
 			return (FALSE);
-		i = 0;
-		while (i < pile_a->size)
-		{
-			pile_a->rank[i] = pile_a->rank[i] >> 1;
-			i++;
-		}
+		bit_i++;
 	}
 	ft_lstiter(actions, &ft_putendl);
 	ft_lstclear(&actions, &free);
