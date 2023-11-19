@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 14:55:04 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/18 23:05:53 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/19 15:49:40 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	rotate_pile(t_pile *pile)
 void	rotate_pile_revert(t_pile *pile)
 {
 	int		tmp;
-	ssize_t	rank_tmp;
+	size_t	rank_tmp;
 	size_t	i;
 
 	if (!pile || pile->size <= 1)

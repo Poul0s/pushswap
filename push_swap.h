@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:52:26 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/19 12:17:35 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/19 15:34:57 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	free_pile(t_pile *pile);
 void	set_pile_rank(t_pile *pile);
 t_pile	*initialise_pile(char **values, size_t size, size_t maxsize);
 t_bool	ft_isnumber(const char *str);
+t_bool	short_sort(t_pile *pile_a, t_pile *pile_b, t_list **actions);
 t_bool	sort_pile(t_pile *pile_a, t_pile *pile_b);
 t_bool	is_sort(t_pile *pile_a, t_pile *pile_b);
 void	print_state(char *action, t_pile *pile_a, t_pile *pile_b);
