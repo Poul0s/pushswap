@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:57:28 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/18 21:07:36 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/23 13:07:42 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	swap(t_pile *pile)
 {
-	int		tmp;
+	t_icost	tmp;
 	size_t	rank_tmp;
 
 	if (pile->size >= 2)
@@ -22,8 +22,6 @@ void	swap(t_pile *pile)
 		tmp = pile->data[pile->size - 1];
 		rank_tmp = pile->rank[pile->size - 1];
 		pile->data[pile->size - 1] = pile->data[pile->size - 2];
-		pile->rank[pile->size - 1] = pile->rank[pile->size - 2];
 		pile->data[pile->size - 2] = tmp;
-		pile->rank[pile->size - 2] = rank_tmp;
 	}
 }

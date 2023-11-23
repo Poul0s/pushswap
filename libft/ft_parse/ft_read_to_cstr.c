@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putptr_nb.c                                     :+:      :+:    :+:   */
+/*   ft_read_to_cstr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 19:17:39 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/07 22:15:30 by psalame          ###   ########.fr       */
+/*   Created: 2023/11/19 17:51:08 by psalame           #+#    #+#             */
+/*   Updated: 2023/11/19 17:55:44 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
-int	ft_putptr_nb(void *ptr)
+ssize_t	ft_read_to_cstr(int fd, char *buffer)
 {
-	char	*res;
-	int		len;
+	ssize_t	res;
 
-	if (ptr == NULL)
-		return (ft_putstr_nb("(nil)"));
-	res = ft_ultoa_base((long long) ptr, FT_HEXA_BASE);
-	if (res == NULL)
-		return (ft_putptr_nb("(nil)"));
-	len = ft_putstr_nb("0x") + ft_putstr_nb(res);
-	free(res);
-	return (len);
+	if (buffer == NULL)
+		return (-1);
+	res = read(fd, buffer, BUFFER_SIZE);
+	if (buffer == NULL || res == -1)
+		return (-1);
+	buffer[res] = 0;
+	return (res);
 }

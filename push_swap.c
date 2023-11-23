@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:52:10 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/19 15:20:04 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/22 14:25:40 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,11 @@ int	main(int ac, char **av)
 	pile_a = initialise_pile(av + 1, ac - 1, ac - 1);
 	pile_b = initialise_pile(NULL, 0, ac - 1);
 	if (pile_a == NULL || pile_b == NULL)
-	{
-		free_pile(pile_a);
-		free_pile(pile_b);
-		ft_putendl_fd("Error", STDERR_FILENO);
-		return (0);
-	}
+		ft_error(pile_a, pile_b, NULL);
 	if (SHOW_DETAIL)
 		print_state(NULL, pile_a, pile_b);
 	if (!is_sort(pile_a, pile_b))
-		if (!sort_pile(pile_a, pile_b))
-			ft_putendl_fd("Error", STDERR_FILENO);
+		sort_pile(pile_a, pile_b);
 	free_pile(pile_a);
 	free_pile(pile_b);
 	return (0);

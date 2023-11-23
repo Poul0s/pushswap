@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_nb.c                                     :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 18:09:46 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/07 22:15:22 by psalame          ###   ########.fr       */
+/*   Created: 2023/11/22 14:21:01 by psalame           #+#    #+#             */
+/*   Updated: 2023/11/22 14:26:04 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_putnbr_nb(int nb)
+void	ft_error(t_pile *a, t_pile *b, t_list **actions)
 {
-	unsigned int	newnb;
-	char			c;
-	short			len;
-
-	len = 0;
-	if (nb < 0)
-	{
-		newnb = -(nb + 1) + 1;
-		write(1, "-", 1);
-		len++;
-	}
-	else
-		newnb = nb;
-	if (newnb >= 10)
-		len += ft_putnbr_nb(newnb / 10);
-	c = newnb % 10 + '0';
-	write(1, &c, 1);
-	len++;
-	return (len);
+	free_pile(a);
+	free_pile(b);
+	ft_lstclear(actions, &free);
+	ft_printf("%fError.\n", 2);
+	exit(EXIT_FAILURE);
 }

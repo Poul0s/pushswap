@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 01:44:04 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/18 01:45:31 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/22 13:53:32 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	free_pile(t_pile *pile)
 	if (pile)
 	{
 		free(pile->data);
-		free(pile->rank);
 		free(pile);
 	}
 }

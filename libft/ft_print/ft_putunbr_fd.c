@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_nb.c                                     :+:      :+:    :+:   */
+/*   ft_putunbr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 16:37:57 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/07 22:15:38 by psalame          ###   ########.fr       */
+/*   Created: 2023/11/02 18:16:48 by psalame           #+#    #+#             */
+/*   Updated: 2023/11/21 17:24:12 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putstr_nb(const char *str)
+ssize_t	ft_putunbr_fd(unsigned int nb, int fd)
 {
-	size_t	strlen;
+	char			c;
+	short			len;
 
-	if (str == NULL)
-		return (ft_putstr_nb("(null)"));
-	strlen = ft_strlen((char *)str);
-	write(1, str, strlen);
-	return (strlen);
+	len = 0;
+	if (nb >= 10)
+		len += ft_putunbr_fd(nb / 10, fd);
+	c = nb % 10 + '0';
+	len += write(fd, &c, 1);
+	return (len);
 }

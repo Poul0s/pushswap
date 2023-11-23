@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 14:43:47 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/19 17:37:52 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/23 18:44:11 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_bool	sort_three(t_pile *a, t_pile *b, t_list **actions)
 {
-	if (a->size == 2 && a->data[1] > a->data[0])
+	if (a->size == 2 && a->data[1].nb > a->data[0].nb)
 	{
 		swap(a);
 		return (add_action("sa", actions, a, b));
@@ -23,27 +23,21 @@ static t_bool	sort_three(t_pile *a, t_pile *b, t_list **actions)
 	{
 		while (!is_sort(a, b))
 		{
-			if (a->data[2] < a->data[1] && a->data[1] > a->data[0] && a->data[2] > a->data[0])
+			if (a->data[2].nb < a->data[1].nb && a->data[1].nb > a->data[0].nb && a->data[2].nb > a->data[0].nb)
 			{
 				rotate_pile_revert(a);
-				return (add_action("rra", actions, a, b));
+				add_action("rra", actions, a, b);
 			}
-			if (a->data[2] > a->data[1] && a->data[0] > a->data[1] && a->data[2] > a->data[0])
+			if (a->data[2].nb > a->data[1].nb && a->data[0].nb > a->data[1].nb && a->data[2].nb > a->data[0].nb)
 			{
 				rotate_pile(a);
-				return (add_action("ra", actions, a, b));
+				add_action("ra", actions, a, b);
 			}
 			swap(a);
-			if (!add_action("sa", actions, a, b))
-				return (FALSE);
+			add_action("sa", actions, a, b);
 		}
 	}
 	return (TRUE);
-}
-
-static t_bool	push_sort(t_pile *pile_a, t_pile *pile_b, t_list **actions)
-{
-	return (FALSE);
 }
 
 t_bool	short_sort(t_pile *pile_a, t_pile *pile_b, t_list **actions)
@@ -55,28 +49,8 @@ t_bool	short_sort(t_pile *pile_a, t_pile *pile_b, t_list **actions)
 		return (sort_three(pile_a, pile_b, actions));
 	else
 	{
-		while (pile_a->size > 3)
-		{
-			push(pile_a, pile_b);
-			if (!add_action("pb", actions, pile_a, pile_b))
-				return (FALSE);
-		}
-		tmp = initialise_pile(NULL, 0, pile_a->size);
-		if (!tmp)
-			return (FALSE);
-		res = sort_three(pile_a, tmp, actions);
-		free_pile(tmp);
-		// if (res && pile_b->size == 2 && pile_b->data[0] < pile_b->data[1])
-		// {
-		// 	swap(pile_b);
-		// 	res = add_action("sb", actions, pile_a, pile_b);
-		// }
-		push_sort(pile_a, pile_b, actions);
-		// while (res && pile_b->size > 0) // doesnt push sorted
-		// {
-		// 	push(pile_b, pile_a);
-		// 	res = add_action("pa", actions, pile_a, pile_b);
-		// }
+		// todo
+		res = FALSE;
 		return (res);
 	}
 }

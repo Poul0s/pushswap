@@ -6,20 +6,19 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:33:40 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/19 12:32:07 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/23 13:07:04 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_bool	push(t_pile *pile_from, t_pile *pile_to)
+void	push(t_pile *pile_from, t_pile *pile_to)
 {
-	int		ele;
-	size_t	rank;
+	t_icost	ele;
 
 	if (pile_from == NULL || pile_to == NULL)
 		return (FALSE);
 	ele = pile_from->data[pile_from->size - 1];
-	rank = pile_from->rank[pile_from->size - 1];
-	return (remove_pile_ele(pile_from) && add_pile_ele(pile_to, ele, rank));
+	remove_pile_ele(pile_from);
+	add_pile_ele(pile_to, ele);
 }

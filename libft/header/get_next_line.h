@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_nb.c                                    :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 16:34:28 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/07 22:15:18 by psalame          ###   ########.fr       */
+/*   Created: 2023/10/31 16:00:19 by psalame           #+#    #+#             */
+/*   Updated: 2023/11/21 16:56:43 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include "libft.h"
 
-int	ft_putchar_nb(const char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
+char	*get_next_line(int fd);
+ssize_t	ft_read_to_cstr(int fd, char *buffer);
+
+#endif
