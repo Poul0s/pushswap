@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 23:10:30 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/23 13:05:16 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/24 17:23:27 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ t_pile	*initialise_pile(char **values, size_t size, size_t maxsize)
 		free_pile(pile);
 		return (NULL);
 	}
-	i = size;
-	while (i > 0)
+	i = 0;
+	while (i < size)
 	{
-		pile->data[i - 1].nb = ft_atoi(values[i - 1]);
-		i--;
+		pile->data[i].nb = ft_atoi(values[size - i - 1]);
+		i++;
 	}
 	return (pile);
 }

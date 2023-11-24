@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 03:18:10 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/23 13:07:57 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/24 15:51:51 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,27 @@ void	do_action(t_action action, t_list **actions, t_pile *a, t_pile *b)
 	{
 		rotate_pile(b);
 		add_action("rb", actions, a, b);
+	}
+	else if (action == rra)
+	{
+		rotate_pile_revert(a);
+		add_action("rra", actions, a, b);
+	}
+	else if (action == rrb)
+	{
+		rotate_pile_revert(b);
+		add_action("rrb", actions, a, b);
+	}
+	else if (action == rr)
+	{
+		rotate_pile(a);
+		rotate_pile(b);
+		add_action("rr", actions, a, b);
+	}
+	else if (action == rrr)
+	{
+		rotate_pile_revert(a);
+		rotate_pile_revert(b);
+		add_action("rrr", actions, a, b);
 	}
 }

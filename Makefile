@@ -6,7 +6,7 @@
 #    By: psalame <psalame@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/31 11:02:12 by psalame           #+#    #+#              #
-#    Updated: 2023/11/19 15:34:48 by psalame          ###   ########.fr        #
+#    Updated: 2023/11/24 16:08:56 by psalame          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,13 @@ SRCS	=	pile/create.c \
 			sort/do_action.c \
 			sort/is_sort.c \
 			sort/sort.c \
-			sort/short_sort.c \
+			sort/algorithm/short_sort.c \
+			sort/algorithm/big_sort/big_sort.c \
+			sort/algorithm/big_sort/cost_calcul.c \
+			sort/algorithm/big_sort/extreme_value.c \
 			ft_isnumber.c \
-			push_swap.c
+			push_swap.c \
+			error.c
 
 OBJS	=	$(SRCS:.c=.o)
 

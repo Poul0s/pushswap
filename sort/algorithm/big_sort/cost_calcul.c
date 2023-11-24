@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 13:13:01 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/23 19:29:51 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/24 21:00:58 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,66 +24,62 @@ unsigned int	calcul_go_top_cost(t_pile *pile, size_t i)
 	return (cost);
 }
 
-static ssize_t	get_better_cost(t_list *possibilities)
+t_stepcost	*get_best_mouvment(t_pile *a, t_pile *b, size_t i, size_t j)
 {
-	ssize_t	best;
+	t_stepcost	*best;
 
-	best = -1;
-	while (possibilities)
+	best = malloc(sizeof(t_stepcost));
+	if (best == NULL)
+		return (NULL);
+	best->cost = MAX(a->size - i - 1, (b->size - j - 1));
+	best->a_direction = 1;
+	best->a_steps = a->size - i - 1;
+	best->b_steps = b->size - j - 1;
+	if (MAX(i + 1, j + 1) < best->cost)
 	{
-		if (best == -1)
-			best = (unsigned) possibilities->content;
-		else
-			best = MIN(best, ((unsigned) possibilities->content));
-		possibilities = possibilities->next;
+		best->cost = MAX(i + 1, (j + 1));
+		best->a_direction = -1;
+		best->a_steps = i + 1;
+		best->b_steps = j + 1;
 	}
-	ft_lstclear(&possibilities, NULL);
+	best->b_direction = best->a_direction;
+	if (calcul_go_top_cost(a, i) + calcul_go_top_cost(b, j) < best->cost)
+	{
+		best->a_steps = calcul_go_top_cost(a, i);
+		best->b_steps = calcul_go_top_cost(b, j);
+		best->cost = best->a_steps + (best->b_steps);
+		best->a_direction = 1 - ((i < a->size / 2) * 2);
+		best->b_direction = 1 - ((j < b->size / 2) * 2);
+	}
 	return (best);
 }
 
-ssize_t	calcul_better_place(t_pile *a, t_pile *b, size_t i)
+t_stepcost	*calcul_better_place(t_pile *a, t_pile *b, size_t i)
 {
-	t_list	*possibilities;
-	size_t	j;
-	unsigned	costs[4];
-
-	possibilities = NULL;
-	j = 0;
-	while (j < b->size)
-	{
-		if (j + 1 == b->size || b->data[j + 1].nb > a->data[i].nb) // mb bad condition
-		{
-			costs[0] = MAX(a->size - i - 1, b->size - j - 1);
-			costs[1] = MAX(i + 1, j + 1);
-			costs[2] = calcul_go_top_cost(a, i) + calcul_go_top_cost(b, j);
-			costs[3] = MIN(MIN(costs[0], costs[1]), costs[2]);
-			if (!ft_lstadd_back(&possibilities, ft_lstnew((void *) costs[3])))
-				ft_lstclear(&possibilities, NULL);
-			if (possibilities == NULL)
-				return (-1);
-		}
-		j++;
-	}
-	return (get_better_cost(possibilities));
+	if (is_extreme_value(b, a->data[i].nb))
+		return (get_best_mouvment(a, b, i, get_max_value_index(b)));
+	else
+		return (get_best_mouvment(a, b, i, get_max_value_below_index(b, a->data[i].nb)));
 }
 
 size_t	calcul_push_cost(t_pile *a, t_pile *b, t_list **actions)
 {
 	size_t			i;
 	size_t			i_min;
-	t_list			*possibilities;
-	unsigned int	cost;
-	
+	t_stepcost		*best;
+
 	i = 0;
 	i_min = 0;
 	while (i < a->size)
 	{
-		a->data[i].cost = calcul_better_place(a, b, i);
-		if (a->data[i].cost == -1)
-			ft_error(actions, a, b);
-		if (a->data[i].cost < a->data[i_min].cost)
+		best = calcul_better_place(a, b, i);
+		if (best == NULL)
+			ft_error(a, b, actions);
+		a->data[i].cost = best->cost;
+		if (a->data[i].cost <= a->data[i_min].cost)
 			i_min = i;
 		i++;
+		free(best);
 	}
 	return (i_min);
 }

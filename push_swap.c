@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:52:10 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/22 14:25:40 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/24 13:58:53 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int ac, char **av)
 		ft_error(pile_a, pile_b, NULL);
 	if (SHOW_DETAIL)
 		print_state(NULL, pile_a, pile_b);
-	if (!is_sort(pile_a, pile_b))
+	if (!is_sort(pile_a))
 		sort_pile(pile_a, pile_b);
 	free_pile(pile_a);
 	free_pile(pile_b);
