@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:27:10 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/24 20:55:42 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/24 21:25:54 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ size_t	get_max_value_below_index(t_pile *pile, int value_max)
 	return (max);
 }
 
+// todo maybe if no value found : send min value (and check failed case)
 size_t	get_min_value_after_index(t_pile *pile, int value_min)
 {
 	size_t	i;
