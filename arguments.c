@@ -1,37 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   arguments.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 14:52:10 by psalame           #+#    #+#             */
+/*   Created: 2023/11/25 02:01:00 by psalame           #+#    #+#             */
 /*   Updated: 2023/11/25 02:05:21 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int ac, char **av)
+t_bool	check_arguments(int size, char **values)
 {
-	t_pile	*pile_a;
-	t_pile	*pile_b;
+	int	i;
+	int	j;
+	int	number;
 
-	if (ac == 1)
-		return (0);
-	parse_arguments(&ac, av);
-	if (!check_arguments(ac - 1, av + 1))
+	i = 0;
+	while (i < size)
 	{
-		ft_putendl_fd("Error", STDERR_FILENO);
-		return (0);
+		if (!ft_isint(values[i]))
+			return (FALSE);
+		j = i - 1;
+		number = ft_atoi(values[i]);
+		while (j >= 0)
+			if (ft_atoi(values[j--]) == number)
+				return (FALSE);
+		i++;
 	}
-	pile_a = initialise_pile(av + 1, ac - 1, ac - 1);
-	pile_b = initialise_pile(NULL, 0, ac - 1);
-	if (pile_a == NULL || pile_b == NULL)
-		ft_error(pile_a, pile_b, NULL);
-	if (!is_sort(pile_a))
-		sort_pile(pile_a, pile_b);
-	free_pile(pile_a);
-	free_pile(pile_b);
-	return (0);
+	return (TRUE);
+}
+
+void parse_arguments(int *ac, char **av)
+{
+	size_t	i;
+	size_t	j;
+	
+	if (*ac == 2)
+	{
+		i = 0;
+		j = 1;
+		*ac = *ac - 1;
+		while (av[1][i])
+		{
+			if (av[1][i] == ' ')
+				av[1][i] = 0;
+			else if (i == 0 || av[1][i - 1] == 0)
+			{
+				av[j++] = av[1] + i;
+				*ac = *ac + 1;
+			}
+			i++;
+		}
+	}
 }

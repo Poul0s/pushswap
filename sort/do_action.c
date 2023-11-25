@@ -6,40 +6,11 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 03:18:10 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/24 15:51:51 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/25 01:24:14 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	print_state(char *action, t_pile *pile_a, t_pile *pile_b)
-{
-	size_t	i;
-
-	if (action == NULL)
-		ft_putendl_fd("-----------------------------------\nInit a and b:", 1);
-	else
-		ft_printf("Exec %s:\n", action);
-	if (pile_a != NULL)
-		i = pile_a->size;
-	else if (pile_a == NULL && pile_b != NULL)
-		i = pile_b->size;
-	if (pile_a && pile_b && pile_b->size > pile_a->size)
-		i = pile_b->size;
-	while (i > 0)
-	{
-		if (pile_a && i <= pile_a->size)
-			ft_printf("%d", pile_a->data[i - 1].nb);
-		else
-			ft_printf(" ");
-		ft_printf(" ");
-		if (pile_b && i <= pile_b->size)
-			ft_printf("%d", pile_b->data[i - 1].nb);
-		ft_putchar_fd('\n', 1);
-		i--;
-	}
-	ft_putendl_fd("- -\na b\n-----------------------------------", 1);
-}
 
 void	add_action(char *action, t_list **actions, t_pile *a, t_pile *b)
 {
@@ -56,10 +27,6 @@ void	add_action(char *action, t_list **actions, t_pile *a, t_pile *b)
 		ft_error(a, b, actions);
 	}
 	ft_lstadd_back(actions, newele);
-	if (SHOW_DETAIL)
-		print_state(action, a, b);
-	if (STEP_BY_STEP)
-		read(0, "", 1);
 }
 
 void	do_action(t_action action, t_list **actions, t_pile *a, t_pile *b)

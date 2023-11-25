@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 22:22:17 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/19 17:51:32 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/25 02:23:29 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,28 +61,45 @@ static char	*gnl_get_line(char *full_buffer, char **oldstr)
 	}
 }
 
-char	*get_next_line(int fd)
+static char	*gnl_process(int fd, t_bool close)
 {
 	static char	*oldstr[1024];
 	char		*readed;
 	char		*line;
 
-	readed = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	if (oldstr[fd] == NULL || ft_strchr(oldstr[fd], '\n') == NULL)
-		readed = gnl_read(fd);
-	if (oldstr[fd] == NULL && readed == NULL)
-		return (NULL);
-	line = ft_strfjoin(oldstr[fd], readed);
-	if (readed != NULL)
-		free(readed);
-	if (line[0] == 0)
-	{
-		free(line);
-		oldstr[fd] = NULL;
-		return (NULL);
-	}
+	if (close)
+		free(oldstr[fd]);
 	else
-		return (gnl_get_line(line, oldstr + fd));
+	{
+		readed = NULL;
+		if (oldstr[fd] == NULL || ft_strchr(oldstr[fd], '\n') == NULL)
+			readed = gnl_read(fd);
+		if (oldstr[fd] == NULL && readed == NULL)
+			return (NULL);
+		line = ft_strfjoin(oldstr[fd], readed);
+		if (readed != NULL)
+			free(readed);
+		if (line[0] == 0)
+		{
+			free(line);
+			oldstr[fd] = NULL;
+		}
+		else
+			return (gnl_get_line(line, oldstr + fd));
+	}
+	return (NULL);
+}
+
+char	*get_next_line(int fd)
+{
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= 1024)
+		return (NULL);
+	else
+		return (gnl_process(fd, FALSE));
+}
+
+void	close_next_line(int fd)
+{
+	if (fd >= 0 && fd < 1024)
+		gnl_process(fd, TRUE);
 }

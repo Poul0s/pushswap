@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 02:24:23 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/24 18:27:59 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/25 00:59:41 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	sort_pile(t_pile *pile_a, t_pile *pile_b)
 	actions = NULL;
 	if (!is_sort(pile_a))
 	{
-		if (pile_a->size <= 5 && 0) // todo
+		if (pile_a->size <= 3)
 			short_sort(pile_a, pile_b, &actions);
 		else
 			big_sort(pile_a, pile_b, &actions);

@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:52:26 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/24 20:15:22 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/25 02:05:21 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 # define PUSH_SWAP_H
 # include "libft.h"
 # include <stdlib.h>
-# ifndef SHOW_DETAIL
-#  define SHOW_DETAIL 0
-# endif
-# ifndef STEP_BY_STEP
-#  define STEP_BY_STEP SHOW_DETAIL
-# endif
 # define MIN(a, b) (a * (a < b) + b * (a >= b))
 # define MAX(a, b) (a * (a > b) + b * (a <= b))
 
@@ -59,6 +53,8 @@ typedef struct s_pile
 	size_t	size;
 }			t_pile;
 
+void 		parse_arguments(int *ac, char **av);
+t_bool		check_arguments(int size, char **values);
 void		add_pile_ele(t_pile *pile, t_icost ele);
 void		remove_pile_ele(t_pile *pile);
 void		rotate_pile(t_pile *pile);
@@ -68,12 +64,11 @@ void		swap(t_pile *pile);
 t_pile		*create_pile(void);
 void		free_pile(t_pile *pile);
 t_pile		*initialise_pile(char **values, size_t size, size_t maxsize);
-t_bool		ft_isnumber(const char *str);
+t_bool		ft_isint(const char *str);
 void		short_sort(t_pile *pile_a, t_pile *pile_b, t_list **actions);
 void		sort_three(t_pile *a, t_pile *b, t_list **actions);
 void		sort_pile(t_pile *pile_a, t_pile *pile_b);
 t_bool		is_sort(t_pile *pile);
-void		print_state(char *action, t_pile *pile_a, t_pile *pile_b);
 void		add_action(char *action, t_list **actions, t_pile *a, t_pile *b);
 void		do_action(t_action action, t_list **actions, t_pile *a, t_pile *b);
 void		ft_error(t_pile *pile_a, t_pile *pile_b, t_list **actions);
@@ -84,5 +79,7 @@ void		big_sort(t_pile *pile_a, t_pile *pile_b, t_list **actions);
 size_t		get_max_value_index(t_pile *pile);
 size_t		get_max_value_below_index(t_pile *pile, int value_max);
 size_t		get_min_value_after_index(t_pile *pile, int value_min);
+size_t		get_min_value_index(t_pile *pile);
+t_bool		is_cyclic_sort(t_pile *pile);
 
 #endif

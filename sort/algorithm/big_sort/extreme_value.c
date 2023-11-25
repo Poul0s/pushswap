@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:27:10 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/24 21:25:54 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/25 00:32:02 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,27 @@ size_t	get_max_value_index(t_pile *pile)
 	return (max);
 }
 
+size_t	get_min_value_index(t_pile *pile)
+{
+	size_t	i;
+	size_t	min;
+	
+	i = 0;
+	min = 0;
+	while (i < pile->size)
+	{
+		if (pile->data[i].nb < pile->data[min].nb)
+			min = i;
+		i++;
+	}
+	return (min);
+}
+
 size_t	get_max_value_below_index(t_pile *pile, int value_max)
 {
 	size_t	i;
 	ssize_t	max;
-	
+
 	i = 0;
 	max = -1;
 	while (i < pile->size)
@@ -71,7 +87,7 @@ size_t	get_min_value_after_index(t_pile *pile, int value_min)
 {
 	size_t	i;
 	ssize_t	min;
-	
+
 	i = 0;
 	min = -1;
 	while (i < pile->size)

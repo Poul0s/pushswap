@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 14:02:03 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/24 20:36:16 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/25 00:55:29 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,17 +108,20 @@ void	big_sort(t_pile *a, t_pile *b, t_list **actions)
 
 	do_action(pb, actions, a, b);
 	do_action(pb, actions, a, b);
-	while (a->size > 3 && !is_sort(a)) // && !is_sort(a) // todo or cycled sorted
+	while (a->size > 3 && !is_cyclic_sort(a))
 	{
 		to_push = calcul_push_cost(a, b, actions);
 		push_efficient(a, b, actions, to_push);
 	}
-	if (!is_sort(a)) // todo or cycled sorted
+	if (!is_cyclic_sort(a))
 		sort_three(a, b, actions);
 	while (b->size != 0)
 	{
 		if (get_min_value_after_index(a, b->data[b->size - 1].nb) != ((size_t) -1))
 			set_pilea_index_at_top(a, b, get_min_value_after_index(a, b->data[b->size - 1].nb), actions);
+		else
+			set_pilea_index_at_top(a, b, get_min_value_index(a), actions);
+			
 		do_action(pa, actions, a, b);
 	}
 	while (get_max_value_index(a) != 0)
