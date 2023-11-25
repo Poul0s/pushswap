@@ -6,7 +6,7 @@
 #    By: psalame <psalame@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/31 11:02:12 by psalame           #+#    #+#              #
-#    Updated: 2023/11/25 17:54:07 by psalame          ###   ########.fr        #
+#    Updated: 2023/11/25 18:29:59 by psalame          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,9 @@ $(LIBFT):
 $(NAME): $(LIBFT) $(OBJS_DIRS) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -lft -L$(LIBFT_PATH) -o $(NAME)
 
-bonus:	$(LIBFT) $(BOBJS_DIRS) $(BOBJS)
+bonus:	checker
+
+checker: $(LIBFT) $(BOBJS_DIRS) $(BOBJS)
 	$(CC) $(CFLAGS) $(BOBJS) -lft -L$(LIBFT_PATH) -o checker
 
 obj/%.o: %.c
