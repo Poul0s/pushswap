@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   min_max.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 02:24:23 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/25 18:09:11 by psalame          ###   ########.fr       */
+/*   Created: 2023/11/25 17:48:58 by psalame           #+#    #+#             */
+/*   Updated: 2023/11/25 17:50:04 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_putendl(void *str)
+size_t	min(size_t a, size_t b)
 {
-	ft_putendl_fd(str, 1);
+	if (a < b)
+		return (a);
+	else
+		return (b);
 }
 
-void	sort_pile(t_pile *pile_a, t_pile *pile_b)
+size_t	max(size_t a, size_t b)
 {
-	t_list	*actions;
-
-	actions = NULL;
-	if (!is_sort(pile_a))
-	{
-		if (pile_a->size <= 5)
-			short_sort(pile_a, pile_b, &actions);
-		else
-			big_sort(pile_a, pile_b, &actions);
-	}
-	ft_lstiter(actions, &ft_putendl);
-	ft_lstclear(&actions, &free);
+	if (a > b)
+		return (a);
+	else
+		return (b);
 }

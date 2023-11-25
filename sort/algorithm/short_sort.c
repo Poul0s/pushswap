@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 14:43:47 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/25 14:15:20 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/25 18:18:04 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,23 @@ void	sort_three(t_pile *a, t_pile *b, t_list **actions)
 	}
 }
 
-void	short_sort(t_pile *pile_a, t_pile *pile_b, t_list **actions)
+void	short_sort(t_pile *a, t_pile *b, t_list **actions)
 {
-	if (pile_a->size == 2)
+	if (a->size == 2)
 	{
-		if (pile_a->data[1].nb > pile_a->data[0].nb)
-			do_action(sa, actions, pile_a, pile_b);
+		if (a->data[1].nb > a->data[0].nb)
+			do_action(sa, actions, a, b);
 	}
-	else if (pile_a->size == 3)
-		sort_three(pile_a, pile_b, actions);
+	else if (a->size == 3)
+		sort_three(a, b, actions);
+	else
+	{
+		while (a->size > 3)
+			do_action(pb, actions, a, b);
+		sort_three(a, b, actions);
+		// check if has to swap : get min value after for each and calcul cost with median
+		if (b->data[1].nb < b->data[0].nb)
+			do_action(sb, actions, a, b);
+		push_b_into_a_sorted(a, b, actions);
+	}
 }

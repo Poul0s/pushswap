@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 03:18:10 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/25 01:24:14 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/25 16:56:05 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	add_action(char *action, t_list **actions, t_pile *a, t_pile *b)
 {
 	t_list	*newele;
 
-	if (action)
-		action = ft_strdup(action);
 	if (action == NULL)
 		ft_error(a, b, actions);
 	newele = ft_lstnew(action);
@@ -29,58 +27,48 @@ void	add_action(char *action, t_list **actions, t_pile *a, t_pile *b)
 	ft_lstadd_back(actions, newele);
 }
 
+static char	*action_to_str(t_action action)
+{
+	if (action == sa)
+		return (ft_strdup("sa"));
+	if (action == sb)
+		return (ft_strdup("sb"));
+	if (action == pa)
+		return (ft_strdup("pa"));
+	if (action == pb)
+		return (ft_strdup("pb"));
+	if (action == ra)
+		return (ft_strdup("ra"));
+	if (action == rb)
+		return (ft_strdup("rb"));
+	if (action == rra)
+		return (ft_strdup("rra"));
+	if (action == rrb)
+		return (ft_strdup("rrb"));
+	if (action == rr)
+		return (ft_strdup("rr"));
+	if (action == rrr)
+		return (ft_strdup("rrr"));
+	return (NULL);
+}
+
 void	do_action(t_action action, t_list **actions, t_pile *a, t_pile *b)
 {
 	if (action == sa)
-	{
 		swap(a);
-		add_action("sa", actions, a, b);
-	}
-	else if (action == sb)
-	{
+	if (action == sb)
 		swap(b);
-		add_action("sb", actions, a, b);
-	}
-	else if (action == pa)
-	{
+	if (action == pa)
 		push(b, a);
-		add_action("pa", actions, a, b);
-	}
-	else if (action == pb)
-	{
+	if (action == pb)
 		push(a, b);
-		add_action("pb", actions, a, b);
-	}
-	else if (action == ra)
-	{
+	if (action == ra || action == rr)
 		rotate_pile(a);
-		add_action("ra", actions, a, b);
-	}
-	else if (action == rb)
-	{
+	if (action == rb || action == rr)
 		rotate_pile(b);
-		add_action("rb", actions, a, b);
-	}
-	else if (action == rra)
-	{
+	if (action == rra || action == rrr)
 		rotate_pile_revert(a);
-		add_action("rra", actions, a, b);
-	}
-	else if (action == rrb)
-	{
+	if (action == rrb || action == rrr)
 		rotate_pile_revert(b);
-		add_action("rrb", actions, a, b);
-	}
-	else if (action == rr)
-	{
-		rotate_pile(a);
-		rotate_pile(b);
-		add_action("rr", actions, a, b);
-	}
-	else if (action == rrr)
-	{
-		rotate_pile_revert(a);
-		rotate_pile_revert(b);
-		add_action("rrr", actions, a, b);
-	}
+	add_action(action_to_str(action), actions, a, b);
 }

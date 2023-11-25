@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:52:26 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/25 14:30:58 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/25 18:18:35 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define PUSH_SWAP_H
 # include "libft.h"
 # include <stdlib.h>
-# define MIN(a, b) (a * (a < b) + b * (a >= b))
-# define MAX(a, b) (a * (a > b) + b * (a <= b))
 
 typedef enum e_action
 {
@@ -53,6 +51,8 @@ typedef struct s_pile
 	size_t	size;
 }			t_pile;
 
+size_t		min(size_t a, size_t b);
+size_t		max(size_t a, size_t b);
 void		parse_arguments(int *ac, char **av);
 t_bool		check_arguments(int size, char **values);
 void		add_pile_ele(t_pile *pile, t_icost ele);
@@ -83,5 +83,6 @@ size_t		get_max_value_below_index(t_pile *pile, int value_max);
 size_t		get_min_value_after_index(t_pile *pile, int value_min);
 size_t		get_min_value_index(t_pile *pile);
 t_bool		is_cyclic_sort(t_pile *pile);
+void		push_b_into_a_sorted(t_pile *a, t_pile *b, t_list **actions);
 
 #endif

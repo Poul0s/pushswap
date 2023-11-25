@@ -6,7 +6,7 @@
 #    By: psalame <psalame@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/31 11:02:12 by psalame           #+#    #+#              #
-#    Updated: 2023/11/25 13:41:15 by psalame          ###   ########.fr        #
+#    Updated: 2023/11/25 17:54:07 by psalame          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,11 @@ SRCS		=	pile/create.c \
 				sort/algorithm/big_sort/get_best_mouvment.c \
 				sort/algorithm/big_sort/cost_calcul.c \
 				sort/algorithm/big_sort/extreme_value.c \
-				ft_isnumber.c \
-				arguments.c \
+				utils/ft_isnumber.c \
+				utils/arguments.c \
 				push_swap.c \
-				error.c
+				utils/error.c \
+				utils/min_max.c
 
 OBJS		=	$(addprefix obj/, $(SRCS:.c=.o))
 
@@ -49,8 +50,9 @@ BSRCS		=	pile/create.c \
 				pile/swap.c \
 				sort/algorithm/big_sort/extreme_value.c \
 				sort/is_sort.c \
-				arguments.c \
-				ft_isnumber.c \
+				utils/arguments.c \
+				utils/ft_isnumber.c \
+				utils/min_max.c \
 				checker_bonus/exec_action_bonus.c \
 				checker_bonus/checker_bonus.c
 
