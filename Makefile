@@ -6,13 +6,13 @@
 #    By: psalame <psalame@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/31 11:02:12 by psalame           #+#    #+#              #
-#    Updated: 2023/11/25 02:51:04 by psalame          ###   ########.fr        #
+#    Updated: 2023/11/25 13:41:15 by psalame          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	gcc
 
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g
 
 NAME		=	push_swap
 
@@ -28,6 +28,7 @@ SRCS		=	pile/create.c \
 				sort/sort.c \
 				sort/algorithm/short_sort.c \
 				sort/algorithm/big_sort/big_sort.c \
+				sort/algorithm/big_sort/get_best_mouvment.c \
 				sort/algorithm/big_sort/cost_calcul.c \
 				sort/algorithm/big_sort/extreme_value.c \
 				ft_isnumber.c \
@@ -50,6 +51,7 @@ BSRCS		=	pile/create.c \
 				sort/is_sort.c \
 				arguments.c \
 				ft_isnumber.c \
+				checker_bonus/exec_action_bonus.c \
 				checker_bonus/checker_bonus.c
 
 BOBJS		=	$(addprefix obj/, $(BSRCS:.c=.o))

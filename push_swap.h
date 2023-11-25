@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:52:26 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/25 02:05:21 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/25 14:30:58 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_pile
 	size_t	size;
 }			t_pile;
 
-void 		parse_arguments(int *ac, char **av);
+void		parse_arguments(int *ac, char **av);
 t_bool		check_arguments(int size, char **values);
 void		add_pile_ele(t_pile *pile, t_icost ele);
 void		remove_pile_ele(t_pile *pile);
@@ -73,8 +73,10 @@ void		add_action(char *action, t_list **actions, t_pile *a, t_pile *b);
 void		do_action(t_action action, t_list **actions, t_pile *a, t_pile *b);
 void		ft_error(t_pile *pile_a, t_pile *pile_b, t_list **actions);
 t_bool		is_extreme_value(t_pile *pile, int value);
-t_stepcost	*calcul_better_place(t_pile *a, t_pile *b, size_t i);
-size_t		calcul_push_cost(t_pile *a, t_pile *b, t_list **actions);
+t_stepcost	calcul_better_place(t_pile *a, t_pile *b, size_t i);
+t_stepcost	get_best_mouvment(t_pile *a, t_pile *b, size_t i, size_t j);
+size_t		calcul_go_top_cost(t_pile *pile, size_t i);
+size_t		calcul_push_cost(t_pile *a, t_pile *b);
 void		big_sort(t_pile *pile_a, t_pile *pile_b, t_list **actions);
 size_t		get_max_value_index(t_pile *pile);
 size_t		get_max_value_below_index(t_pile *pile, int value_max);

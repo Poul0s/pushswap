@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 14:43:47 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/25 00:59:56 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/25 14:15:20 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	sort_three(t_pile *a, t_pile *b, t_list **actions)
 			else
 				do_action(sa, actions, a, b);
 		}
-		
 	}
 }
 

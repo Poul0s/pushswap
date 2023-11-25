@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 02:01:00 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/25 02:05:21 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/25 14:10:40 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ t_bool	check_arguments(int size, char **values)
 	return (TRUE);
 }
 
-void parse_arguments(int *ac, char **av)
+void	parse_arguments(int *ac, char **av)
 {
 	size_t	i;
 	size_t	j;
-	
+
 	if (*ac == 2)
 	{
 		i = 0;

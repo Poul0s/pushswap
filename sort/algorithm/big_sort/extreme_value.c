@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:27:10 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/25 00:32:02 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/25 14:21:32 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ size_t	get_max_value_index(t_pile *pile)
 {
 	size_t	i;
 	size_t	max;
-	
+
 	i = 0;
 	max = 0;
 	while (i < pile->size)
@@ -52,7 +52,7 @@ size_t	get_min_value_index(t_pile *pile)
 {
 	size_t	i;
 	size_t	min;
-	
+
 	i = 0;
 	min = 0;
 	while (i < pile->size)
@@ -68,14 +68,16 @@ size_t	get_max_value_below_index(t_pile *pile, int value_max)
 {
 	size_t	i;
 	ssize_t	max;
+	int		nb;
 
 	i = 0;
 	max = -1;
 	while (i < pile->size)
 	{
-		if (max == -1 && pile->data[i].nb < value_max)
+		nb = pile->data[i].nb;
+		if (max == -1 && nb < value_max)
 			max = i;
-		else if (max != -1 && pile->data[i].nb > pile->data[max].nb && pile->data[i].nb < value_max)
+		else if (max != -1 && nb > pile->data[max].nb && nb < value_max)
 			max = i;
 		i++;
 	}
@@ -87,14 +89,16 @@ size_t	get_min_value_after_index(t_pile *pile, int value_min)
 {
 	size_t	i;
 	ssize_t	min;
+	int		nb;
 
 	i = 0;
 	min = -1;
 	while (i < pile->size)
 	{
-		if (min == -1 && pile->data[i].nb > value_min)
+		nb = pile->data[i].nb;
+		if (min == -1 && nb > value_min)
 			min = i;
-		else if (min != -1 && pile->data[i].nb < pile->data[min].nb && pile->data[i].nb > value_min)
+		else if (min != -1 && nb < pile->data[min].nb && nb > value_min)
 			min = i;
 		i++;
 	}

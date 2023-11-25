@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:17:04 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/22 13:53:05 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/25 13:00:51 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_pile	*create_pile(void)
 {
 	t_pile	*pile;
 
-	pile = malloc(sizeof(pile));
+	pile = malloc(sizeof(t_pile));
 	if (pile == NULL)
 		return (NULL);
 	pile->data = NULL;

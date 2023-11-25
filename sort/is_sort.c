@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 03:10:24 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/25 00:47:27 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/25 14:14:52 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,11 @@ t_bool	is_cyclic_sort(t_pile *pile)
 		{
 			if (pile->data[i].nb < pile->data[j].nb)
 			{
-				if (get_min_value_index(pile) != i || get_max_value_index(pile) != j)
+				if (get_min_value_index(pile) != i)
 					return (FALSE);
-				else
-					break;
+				else if (get_max_value_index(pile) != j)
+					return (FALSE);
+				break ;
 			}
 			j++;
 		}
