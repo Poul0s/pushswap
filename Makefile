@@ -6,13 +6,13 @@
 #    By: psalame <psalame@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/31 11:02:12 by psalame           #+#    #+#              #
-#    Updated: 2023/11/25 18:29:59 by psalame          ###   ########.fr        #
+#    Updated: 2023/11/28 16:25:53 by psalame          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC			=	gcc
+CC			=	cc
 
-CFLAGS		=	-Wall -Wextra -Werror -g
+CFLAGS		=	-Wall -Wextra -Werror
 
 NAME		=	push_swap
 
@@ -80,7 +80,7 @@ checker: $(LIBFT) $(BOBJS_DIRS) $(BOBJS)
 	$(CC) $(CFLAGS) $(BOBJS) -lft -L$(LIBFT_PATH) -o checker
 
 obj/%.o: %.c
-	$(CC) $(CFLAGS) -c $^ -lft -L$(LIBFT_PATH) -I $(HEADER) -I $(LIBFT_PATH)/header -o $@
+	$(CC) $(CFLAGS) -c $^ -I $(HEADER) -I $(LIBFT_PATH)/header -o $@
 
 $(sort $(BOBJS_DIRS) $(OBJS_DIRS)):
 	@mkdir -p $@

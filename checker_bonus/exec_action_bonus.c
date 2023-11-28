@@ -6,13 +6,11 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 12:50:53 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/25 17:50:53 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/28 16:31:43 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// todo check what happen if action exec without value in pile 
 
 static void	action_not_found(char *action, t_pile *a, t_pile *b)
 {
