@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:21:21 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/25 14:13:35 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/28 16:43:49 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int ac, char **av)
 	pile_b = initialise_pile(NULL, 0, ac - 1);
 	if (pile_a == NULL || pile_b == NULL)
 	{
-		ft_printf("%fError", STDERR_FILENO);
+		ft_printf("%fError\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
 	check_result(pile_a, pile_b);
