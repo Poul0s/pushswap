@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:21:21 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/28 16:43:49 by psalame          ###   ########.fr       */
+/*   Updated: 2023/11/30 14:32:47 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	main(int ac, char **av)
 		ft_putendl_fd("Error", STDERR_FILENO);
 		return (0);
 	}
+	if (ac - 1 == 0)
+		return (0);
 	pile_a = initialise_pile(av + 1, ac - 1, ac - 1);
 	pile_b = initialise_pile(NULL, 0, ac - 1);
 	if (pile_a == NULL || pile_b == NULL)
