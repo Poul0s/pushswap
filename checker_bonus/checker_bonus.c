@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:21:21 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/30 14:32:47 by psalame          ###   ########.fr       */
+/*   Updated: 2023/12/02 14:52:55 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int ac, char **av)
 	if (ac == 1)
 		return (0);
 	parse_arguments(&ac, av);
-	if (!check_arguments(ac - 1, av + 1))
+	if (ac == 1 || !check_arguments(ac - 1, av + 1))
 	{
 		ft_putendl_fd("Error", STDERR_FILENO);
 		return (0);
