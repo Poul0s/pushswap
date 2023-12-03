@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 02:01:00 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/25 14:10:40 by psalame          ###   ########.fr       */
+/*   Updated: 2023/12/03 18:45:01 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,24 @@ t_bool	check_arguments(int size, char **values)
 	return (TRUE);
 }
 
+static void	reduce_to_one_argument(int *ac, char **av)
+{
+	size_t	len;
+
+	while (*ac > 2)
+	{
+		len = ft_strlen(av[*ac - 2]);
+		av[*ac - 2][len] = ' ';
+		*ac = *ac - 1;
+	}
+}
+
 void	parse_arguments(int *ac, char **av)
 {
 	size_t	i;
 	size_t	j;
 
+	reduce_to_one_argument(ac, av);
 	if (*ac == 2)
 	{
 		i = 0;
