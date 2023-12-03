@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:28:03 by psalame           #+#    #+#             */
-/*   Updated: 2023/11/25 18:03:13 by psalame          ###   ########.fr       */
+/*   Updated: 2023/12/03 19:05:45 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static void	calcul_cost_coef(t_stepcost *stepcost, t_pile *a, t_pile *b)
 	unsigned int	a_cost_coef;
 	unsigned int	b_cost_coef;
 
-	a_cost_coef = stepcost->a_steps * (1 + (a->size > b->size) * 0.2);
-	b_cost_coef = stepcost->b_steps * (1 + (a->size < b->size) * 0.2);
+	a_cost_coef = stepcost->a_steps * (1 + (a->size > b->size) * 0.21);
+	b_cost_coef = stepcost->b_steps * (1 + (a->size < b->size) * 0.21);
 	if (stepcost->a_direction == stepcost->b_direction)
 		stepcost->cost = max(a_cost_coef, b_cost_coef);
 	else
